@@ -1,0 +1,21 @@
+version: '3.6'
+services:
+  pgsql:
+    image: postgres:10.4-alpine
+    container_name: muxrest-pgsql
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: muxrest
+      POSTGRES_USER: muxrest
+      POSTGRES_PASSWORD: muxrest
+    networks:
+      - muxrest
+
+
+networks:
+  muxrest:
+    driver: bridge
+volumes:
+  muxrest-pgsql:
+    driver: local
