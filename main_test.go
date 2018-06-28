@@ -27,7 +27,7 @@ func TestMain(m *testing.M) {
 		os.Getenv("TEST_APP_DB_USERNAME"),
 		os.Getenv("TEST_APP_DB_PASSWORD"),
 		os.Getenv("TEST_APP_DB_NAME"),
-		os.Getenv("TEST_AP_DB_PORT"))
+		os.Getenv("TEST_APP_DB_PORT"))
 
 	ensureTableExists()
 

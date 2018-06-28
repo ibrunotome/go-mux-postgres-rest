@@ -10,7 +10,7 @@ services:
       POSTGRES_USER: muxrest
       POSTGRES_PASSWORD: muxrest
     networks:
-      - muxrest
+      - local
   pgsql-tests:
     image: postgres:10.4-alpine
     container_name: muxrest-pgsql-tests
@@ -21,10 +21,10 @@ services:
       POSTGRES_USER: muxrest_test
       POSTGRES_PASSWORD: muxrest_test
     networks:
-      - muxrest
+      - local
 
 networks:
-  muxrest:
+  local:
     driver: bridge
 volumes:
   muxrest-pgsql:
