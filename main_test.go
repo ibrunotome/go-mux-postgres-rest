@@ -9,6 +9,7 @@ import (
 	"github.com/joho/godotenv"
 	"net/http"
 	"net/http/httptest"
+	"encoding/json"
 )
 
 var a main.App
@@ -45,6 +46,21 @@ func TestEmptyTable(t *testing.T) {
 
 	if body := response.Body.String(); body != "[]" {
 		t.Errorf("Expected an empty array. Got %s", body)
+	}
+}
+
+func TestGetNonExistentProduct(t *testing.T) {
+	clearTable()
+
+	req, _ := http.NewRequest("GET", "/product/11", nil)
+	response := executeRequest(req)
+
+	checkResponseCode(t, http.StatusNotFound, response.Code)
+
+	var m map[string]string
+	json.Unmarshal(response.Body.Bytes(), &m)
+	if m["error"] != "Product not found" {
+		t.Errorf("Expected the 'error' key of the response to be set to 'Product not found'. Got '%s'", m["error"])
 	}
 }
 
