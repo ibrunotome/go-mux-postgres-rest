@@ -12,7 +12,6 @@ services:
     networks:
       - muxrest
 
-
 networks:
   muxrest:
     driver: bridge
